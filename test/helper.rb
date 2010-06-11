@@ -1,3 +1,6 @@
+dir = File.expand_path('../../../shoulda/lib', __FILE__)
+
+$LOAD_PATH.unshift  dir
 require 'rubygems'
 require 'test/unit'
 require 'shoulda'

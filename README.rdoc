@@ -1,6 +1,8 @@
 = rubypond
 
-Description goes here.
+This gem is a set of library to write sheet music via {lilypond}[http://lilypond.org/]
+
+It requires lilypond to be installed in your system for testing
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +16,8 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 hallelujah. See LICENSE for details.
+Copyright (c) 2010 [Ramihajamalala Hery - hallelujah <hery at rails-royce.org>]. See LICENSE for details.
+
+== Reminder
+
+{Lilypond glossary}[http://lilypond.org/cygwin/release/lilypond/lilypond-doc/x/usr/share/doc/lilypond/html/Documentation/user/music-glossary/index.html]
