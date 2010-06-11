@@ -18,4 +18,9 @@ coverage
 rdoc
 pkg
 
+# VIM SWAP FILES
+*.swp
+
 ## PROJECT::SPECIFIC
+*.pdf
+*.ps
