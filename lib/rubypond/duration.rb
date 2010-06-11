@@ -25,7 +25,7 @@ module Rubypond
         @rests = []
       end
       @value = case v.to_i
-               when -2
+               when (-Float::INFINITY..-2)
                  '\maxima'
                when -1
                  '\longa'
