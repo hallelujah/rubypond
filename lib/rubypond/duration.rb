@@ -14,22 +14,24 @@ module Rubypond
   class Duration
 
     attr_reader :rests,:value, :dots
+    attr_accessor :multiple
 
     def initialize(rests, dots_count = nil)
       unless dots_count
-        @rests = self.class.value_of_duration(rests.to_i).reverse
+        @rests,self.multiple = self.class.value_of_duration(rests.to_i)
+        @rests.reverse!
         v, @dots =  @rests.shift
       else
         @dots = dots_count
         v = rests
         @rests = []
       end
-      @value = case v.to_i
-               when (-Float::INFINITY..-2)
+      @value = case 1 / v 
+               when (8..Float::INFINITY)
                  '\maxima'
-               when -1
+               when 4
                  '\longa'
-               when 0
+               when 2
                  '\breve'
                else
                  v.to_i
@@ -46,15 +48,21 @@ module Rubypond
 
     class << self
       def value_of_duration(integer)
-        binary = integer.to_s(2)
+        # euclidian division against maxim length
+        multiple = integer.divmod(2048)
+        # The penultimate rest of euclidian division against maxima length
+        nb = 2048 * (multiple.first > 0 ? 1 : 0) + multiple.last
+
+        binary = nb.to_s(2)
         array = binary.scan(/(1+|0+)/)
         size = 0
-        array.reverse.map do |val,b|
+        a = array.reverse.map do |val,b|
           size += val.size
           # [note_value,dots_cout]
           next unless val =~ /^1/
             [1024.0 / (2 ** (size + 1)), val.size - 1]
         end.compact
+        [a, multiple]
       end
     end
   end
