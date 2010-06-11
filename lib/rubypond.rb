@@ -4,7 +4,7 @@ class Float
   end
 end
 
-:.unshift File.expand_path('../lib',__FILE__)
+$:.unshift File.expand_path('../lib',__FILE__)
 Dir[File.join(File.dirname(__FILE__),'**/*.rb')].each do |lib|
   require lib
 end
